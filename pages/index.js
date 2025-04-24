@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -13,7 +12,9 @@ export default function Home() {
           模板 + 图片 + 爆款文案 = 吸睛笔记，三步搞定！
         </p>
         <div className="mt-6">
-          <Button className="px-6 py-3 text-lg">立即开始</Button>
+          <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded text-lg">
+            立即开始
+          </button>
         </div>
       </section>
 
@@ -42,7 +43,9 @@ export default function Home() {
                 priority={index === 0}
               />
               <div className="p-4 text-center">
-                <Button variant="outline">使用此模板</Button>
+                <button className="border px-4 py-2 rounded hover:bg-gray-100">
+                  使用此模板
+                </button>
               </div>
             </div>
           ))}

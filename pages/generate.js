@@ -63,7 +63,7 @@ export default function GeneratePage() {
             >
               <img
                 src={previewUrl}
-                alt="封面预览"
+                alt="封面图"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
               />
               <div className="absolute bottom-4 left-0 right-0 z-10 text-center px-3">

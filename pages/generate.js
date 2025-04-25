@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import html2canvas from "html2canvas";
 
 export default function GeneratePage() {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
+  const previewRef = useRef(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -11,6 +13,15 @@ export default function GeneratePage() {
       setImage(file);
       setPreviewUrl(URL.createObjectURL(file));
     }
+  };
+
+  const handleDownload = async () => {
+    if (!previewRef.current) return;
+    const canvas = await html2canvas(previewRef.current);
+    const link = document.createElement("a");
+    link.download = "xhs-cover.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
   };
 
   return (
@@ -36,10 +47,13 @@ export default function GeneratePage() {
           />
         </div>
 
-        {/* 生成按钮（当前无动作） */}
-        <div className="text-center my-6">
-          <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded">
-            生成封面
+        {/* 操作按钮 */}
+        <div className="text-center my-6 flex gap-4 justify-center">
+          <button
+            className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded"
+            onClick={handleDownload}
+          >
+            生成封面并下载
           </button>
         </div>
 
@@ -47,13 +61,18 @@ export default function GeneratePage() {
         {previewUrl && (
           <div className="text-center">
             <h2 className="text-lg font-semibold mb-2">封面预览：</h2>
-            <div className="inline-block border p-2 rounded shadow">
+            <div
+              ref={previewRef}
+              className="inline-block border p-2 rounded shadow bg-white relative w-[300px] h-[400px] overflow-hidden"
+            >
               <img
                 src={previewUrl}
                 alt="预览图"
-                className="max-w-xs rounded mb-2"
+                className="absolute top-0 left-0 w-full h-full object-cover z-0"
               />
-              <p className="text-sm text-gray-700">{title || "示例标题"}</p>
+              <p className="absolute bottom-4 left-4 right-4 text-white text-xl font-bold z-10 bg-black/60 px-2 py-1 rounded">
+                {title || "示例标题"}
+              </p>
             </div>
           </div>
         )}

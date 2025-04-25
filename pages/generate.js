@@ -29,13 +29,11 @@ export default function GeneratePage() {
       <div className="max-w-3xl mx-auto bg-white p-6 rounded shadow">
         <h1 className="text-2xl font-bold mb-6 text-center">封面生成器</h1>
 
-        {/* 上传图片 */}
         <div className="mb-4">
           <label className="block mb-2 font-medium">上传图片：</label>
           <input type="file" accept="image/*" onChange={handleImageChange} />
         </div>
 
-        {/* 输入标题 */}
         <div className="mb-4">
           <label className="block mb-2 font-medium">输入标题：</label>
           <input
@@ -47,8 +45,7 @@ export default function GeneratePage() {
           />
         </div>
 
-        {/* 操作按钮 */}
-        <div className="text-center my-6 flex gap-4 justify-center">
+        <div className="text-center my-6">
           <button
             className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded"
             onClick={handleDownload}
@@ -57,21 +54,22 @@ export default function GeneratePage() {
           </button>
         </div>
 
-        {/* 预览区域 */}
         {previewUrl && (
           <div className="text-center">
             <h2 className="text-lg font-semibold mb-2">封面预览：</h2>
             <div
               ref={previewRef}
-              className="relative inline-block w-[300px] h-[400px] overflow-hidden rounded shadow border"
+              className="relative inline-block w-[300px] h-[400px] rounded overflow-hidden shadow border"
             >
               <img
                 src={previewUrl}
-                alt="预览图"
+                alt="封面预览"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
               />
-              <div className="absolute bottom-4 left-4 right-4 z-10 bg-black/60 text-white text-xl font-bold px-2 py-1 rounded text-center">
-                {title || "示例标题"}
+              <div className="absolute bottom-4 left-0 right-0 z-10 text-center px-3">
+                <p className="text-white text-xl font-bold bg-black/60 inline-block px-3 py-1 rounded">
+                  {title || "示例标题"}
+                </p>
               </div>
             </div>
           </div>

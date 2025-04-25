@@ -63,16 +63,16 @@ export default function GeneratePage() {
             <h2 className="text-lg font-semibold mb-2">封面预览：</h2>
             <div
               ref={previewRef}
-              className="inline-block border p-2 rounded shadow bg-white relative w-[300px] h-[400px] overflow-hidden"
+              className="relative inline-block w-[300px] h-[400px] overflow-hidden rounded shadow border"
             >
               <img
                 src={previewUrl}
                 alt="预览图"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
               />
-              <p className="absolute bottom-4 left-4 right-4 text-white text-xl font-bold z-10 bg-black/60 px-2 py-1 rounded">
+              <div className="absolute bottom-4 left-4 right-4 z-10 bg-black/60 text-white text-xl font-bold px-2 py-1 rounded text-center">
                 {title || "示例标题"}
-              </p>
+              </div>
             </div>
           </div>
         )}
